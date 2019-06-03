@@ -4,10 +4,10 @@ module.exports = function(app) {
   
   app.route('/products')
     .get(controller.get_products)
-    .post(controller.create_a_team);
+    .post(controller.create_a_product);
 
-  app.route('/products/:teamId')
+  app.route('/products/:productId')
     .get(controller.get_a_product)
-    .put(controller.update_a_team)
-    .delete(controller.delete_a_team);
+    .put(controller.update_a_product)
+    .delete(controller.delete_a_product);
 };

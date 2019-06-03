@@ -21,11 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var routesProduct = require('./routes/productRoutes');      
-var routesLogin = require('./routes/loginRoutes');    
 var routesHome = require('./routes/homeRoutes');      
 
 routesProduct(app); 
-routesLogin(app);
 routesHome(app);
 
 var path = require('path');

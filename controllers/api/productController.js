@@ -2,7 +2,7 @@
 
 
 var mongoose = require('mongoose'),
-  Product = mongoose.model('Products');
+  Product = mongoose.model('Product');
 
 exports.get_a_product = function (req, res) {
   Product.find({ _id: req.params.productId }).then((err, response) => {
