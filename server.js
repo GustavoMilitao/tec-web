@@ -19,18 +19,11 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-var routesPokemon = require('./routes/pokemonRoutes');
-var routesSkill = require('./routes/skillRoutes');    
-var routesUser = require('./routes/userRoutes');      
-var routesTeam = require('./routes/teamRoutes');      
+var routesProduct = require('./routes/productRoutes');      
 var routesLogin = require('./routes/loginRoutes');    
 var routesHome = require('./routes/homeRoutes');      
 
-routesTeam(app); 
-routesPokemon(app);
-routesSkill(app); 
-routesUser(app); 
+routesProduct(app); 
 routesLogin(app);
 routesHome(app);
 
