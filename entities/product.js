@@ -18,8 +18,8 @@ var Product = new Schema({
   },
   votos: {
     type: Number,
-    default: ""
+    default: 0
   }
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Product', Product);
