@@ -8,7 +8,11 @@
 
     <!-- Bootstrap CSS -->
     <link href="../../content/site.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/content/bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/content/bootstrap.css"> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
     <title>Random responsive pages - Home</title>
 </head>
@@ -24,22 +28,22 @@
 
             <div class="menu col-sm-8 col-md-6 ">
                 <nav class="nav nav-pills nav-fill">
-                    <a class="nav-item nav-link active" href="index.html">Receitas</a>
-                    <a class="nav-item nav-link" href="estoque.html">Inserir Receitas</a>
+                    <a class="nav-item nav-link active" href="#" ng-click="alterWindows(1)">Receitas</a>
+                    <a class="nav-item nav-link" href="#" ng-click="alterWindows(2)">Inserir Receitas</a>
                 </nav>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 col-xs-9">
+            <div class="col-sm-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Receitas</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{brade}}</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="row">
+        <div ng-if="windowShow == 1" class="row">
 
             <div class="galeria col-sm-9">
 
@@ -47,23 +51,27 @@
 
                     <div class="col-lg-6" ng-repeat="card in user">
                         <div class="card">
-                            <img class="img-fluid" src="https://picsum.photos/1920/1080/?random&1" alt="">
-                            <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">Novo
-                                    produto</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="news-title">
-                                    <h2 class=" title-small"><a href="#">{{card.receita}}</a></h2>
-                                </div>
-                                <p class="card-text"><small class="text-time"><em>Por admin</em></small></p>
-                            </div>
+                            <img class="img-fluid" ng-src="{{card.url}}" alt="">
                         </div>
+                        <div class="card-body">
+                            <div class="news-title">
+                                <h2 class=" title-small"><a href="#">{{card.nome}}</a></h2>
+                            </div>
+                            <p class="card-text"><small class="text-time"><em>Por admin</em></small></p>
+                        </div>
+                        <button class="btn btn-danger" ng-click="confirmVote(card.votos, card._id)">Votos <span
+                                class="badge badge-light">{{card.votos}}</span></button>
                     </div>
-
-
                 </div>
+
+
             </div>
 
+        </div>
+
+        <div ng-if="windowShow == 2" class="row">
+            
+        </div>
         </div>
 
 
@@ -108,7 +116,8 @@
     </section>
 
 
-
+    <script src="/scripts/jquery-1.10.2.js"></script>
+    <script src="/scripts/bootstrap.js"></script>
     <script src="/scripts/modernizr-2.6.2.js"></script>
     <script src="/scripts/respond.js"></script>
     <script src="/scripts/angular.min.js"></script>
