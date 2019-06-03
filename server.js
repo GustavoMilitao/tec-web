@@ -1,41 +1,7 @@
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  mongoose = require('mongoose'),
-  product = require('./entities/product'),
-  bodyParser = require('body-parser');
-  
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
+var http = require('http')
+    ,app = require('./config/express');
 
-var uri = "mongodb://eckounltd:cefet123@custerpokemon-shard-00-00-zznsg.mongodb.net:27017,custerpokemon-shard-00-01-zznsg.mongodb.net:27017,custerpokemon-shard-00-02-zznsg.mongodb.net:27017/pokedeck?ssl=true&replicaSet=CusterPokemon-shard-0&authSource=admin";
-mongoose.connect(uri); 
+http.createServer(app).listen(3000, function() {
+    console.log('Servidor escutando na porta: ' + this.address().port);
+});
 
-var cookieParser = require('cookie-parser');
-
-
-
-app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-var routesProduct = require('./routes/productRoutes');      
-var routesHome = require('./routes/homeRoutes');      
-var routesProductView = require('./routes/productViewRoutes');
-
-routesProduct(app); 
-routesHome(app);
-routesProductView(app);
-
-var path = require('path');
-
-app.use('/content',express.static(path.join(__dirname, 'content')));
-app.use('/scripts',express.static(path.join(__dirname, 'scripts')));
-app.use('/fonts',express.static(path.join(__dirname, 'fonts')));
-
-app.engine('html', require('ejs').renderFile);
-
-// require("openurl").open("http://localhost:"+port.toString()+"/");
-
-app.listen(port);

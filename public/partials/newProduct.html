@@ -1,0 +1,55 @@
+<div ng-show="!ready" class="container">
+    <div class="row">
+        <div id="loading" style="z-index:500">
+            <ul class="bokeh">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div ng-show="ready" style="background-color: white;">
+    <nav class="nav-extended">
+        <div class="nav-content blue center">
+            <div class="row">
+                <div class="col s1 m1 l1 xl1">
+                    <a class="brand-logo left" href="/">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+            </div>
+            <label class="nav-title white-text ">Novo produto</label>
+        </div>
+    </nav>
+    <div class="row">
+        <form ng-submit="salvar()" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="newProduct.nome" id="first_name" type="text" class="validate">
+                    <label for="first_name">Nome</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="newProduct.url" id="url" type="text" class="validate">
+                    <label for="url">Url</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea ng-model="newProduct.receita" id="receita" class="materialize-textarea"></textarea>
+                    <label for="receita">Receita</label>
+                </div>
+            </div>
+            <div class="row center-align">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light" style="cursor: pointer" type="submit"
+                        name="action">Salvar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div ng-show="!ready" class="container">
+	<div class="row">
+		<div id="loading" style="z-index:500">
+			<ul class="bokeh">
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div ng-show="ready">
+	<nav>
+		<div class="nav-wrapper navbar-fixed">
+			<div class="row no-margin-bottom">
+				<div class="col s12 m12 l12 xl12">
+					<img class="materialboxed" width="90"
+						src="https://img.stpu.com.br/?img=https://s3.amazonaws.com/pu-mgr/default/a0R0f000012YZr8EAG/5ca51403e4b04178b8b89241.jpg&w=620&h=400">
+				</div>
+			</div>
+		</div>
+	</nav>
+	<nav>
+		<div class="blue nav-wrapper navbar-fixed">
+			<div class="row no-margin-bottom">
+				<div class="col s12 m12 l12 xl12">
+					<label class="brand-logo left">Pesquisar</label>
+				</div>
+			</div>
+			<div class="input-field">
+				<input id="search" ng-model="searchTitle" type="search" required>
+				<i class="material-icons logo-search">search</i>
+				<i class="material-icons">close</i>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<div class="row">
+		<div ng-repeat="product in products | filter:searchTitle" class="col s12 m6 l4 xl4">
+			<a href="/product/{{product._id}}">
+				<product id="{{product._id}}" nome="{{product.nome}}" url="{{product.url}}"
+					receita="{{product.receita}}" votos="{{product.votos}}">
+				</product>
+			</a>
+		</div>
+	</div>
+	<div class="center-align">
+		<a href="/product" style="position: fixed; bottom: 10px;"
+			class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div ng-show="!ready" class="container">
+    <div class="row">
+        <div id="loading" style="z-index:500">
+            <ul class="bokeh">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div ng-show="ready">
+    <nav class="nav-extended">
+        <div class="nav-content blue center">
+            <div class="row">
+                <div class="col s1 m1 l1 xl1">
+                    <a class="brand-logo left" href="/">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+            </div>
+            <label class="nav-title white-text ">{{product.nome}}</label>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container container-product product">
+        <div style="background-image: url('{{product.url}}'); background-size: cover;  position: relative; height: 500px;" class="row white">
+            <br>
+            <div class="col s12 m12 l12 xl12">
+                <h6 class="product-description col s12 m12 l12 xl12 grey-text text-lighten-1 valign-wrapper">
+                    <i class="grey-text text-darken-1 material-icons left">description</i>
+                    {{product.receita}}
+                </h6>
+                <div class="row">
+                    <div style="bottom: 10px; position: absolute" class="col s12 m12 l12 xl12 center-align">
+                        <a class="btn waves-effect waves-light black-text orange darken-2" ng-click="vote()" href="#">Votar ({{product.votos}})</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
