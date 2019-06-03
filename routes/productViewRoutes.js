@@ -2,6 +2,6 @@
 module.exports = function(app) {
   var controller = require('../controllers/mvc/productViewController');
   
-  app.route('/products/new')
+  app.route('/views/products')
     .get(controller.new);
 };

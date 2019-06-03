@@ -1,4 +1,4 @@
-﻿angular.module('pokedeck', [])
+﻿angular.module('votex', [])
     .controller('loginCtrl', [function () {
         angular.element(document).ready(function () {
             var cookie = getCookie('user');
@@ -9,7 +9,7 @@
     }]);
 
 
-var app = angular.module('pokedeck', []);
+var app = angular.module('votex', []);
 app.controller('loginCtrl', function ($scope, $http, $timeout) {
     $scope.form = {
         email: "",

@@ -1,4 +1,4 @@
-﻿var app = angular.module('pokedeck', []);
+﻿﻿var app = angular.module('pokedeck', []);
 app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $compile) {
 
     $scope.windowShow = 1;

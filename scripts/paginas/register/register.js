@@ -1,4 +1,4 @@
-﻿var app = angular.module('pokedeck', []);
+﻿var app = angular.module('votex', []);
 app.controller('registerCtrl', function ($scope, $http, $timeout) {
     $scope.form = {
         user: "",
