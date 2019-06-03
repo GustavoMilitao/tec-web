@@ -165,15 +165,15 @@ app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $c
         window.location.href="/";
     }
 
-    var cookie = getCookie('user');
-    if (!cookie) {
-        window.location.href = "/";
-    } else {
-        getLoggedUser($http, $scope);
-        getPokemonsList($http, $scope);
-        getSkillsList($http, $scope);
-        getMyTeams($http, $scope);
-    }
+    // var cookie = getCookie('user');
+    // if (!cookie) {
+    //     window.location.href = "/";
+    // } else {
+    //     getLoggedUser($http, $scope);
+    //     getPokemonsList($http, $scope);
+    //     getSkillsList($http, $scope);
+    //     getMyTeams($http, $scope);
+    // }
 });
 
 function contemPokemonNaLista(nome, lista) {
