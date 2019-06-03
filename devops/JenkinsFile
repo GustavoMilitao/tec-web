@@ -1,0 +1,24 @@
+	currentBuild.result = "SUCCESS"
+	try {
+		pipeline {
+			stage('Checkout'){
+
+			  checkout scm
+		   }
+			stage('Build') {
+				steps {
+					sh 'npm install'
+				}
+			}
+			stage('Build Docker') {
+				steps {
+					sh './jenkins/scripts/test.sh'
+				}
+			}
+		}
+	}catch (err) {
+
+        currentBuild.result = "FAILURE"
+
+        throw err
+    }

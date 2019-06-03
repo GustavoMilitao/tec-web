@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<meta name="viewport" content="width=device-width" />
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/content/site.css">
+    <link rel="stylesheet" type="text/css" href="/../../content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/../../content/loading.css">
+</head>
+
+<body>
+    <div class="body-content" ng-app="pokedeck" ng-cloak>
+        <div class="row" ng-controller="homeCtrl">
+            
+            <div align="center" class="col-xs-12 col-sm-8 col-md-7 col-lg-5 col-centered">
+                <form class="login-dp">
+                    <div ng-show="!ready" class="container">
+                        <div class="row">
+                            <div id="loading" style="z-index:500">
+                                <ul class="bokeh">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div ng-show="!ready"> Carregando dados..</div> -->
+                    <div ng-show="ready" class="col-md-12 col-sm-12 col-lg-12 espacado">
+                        <!-- <h4>Olá {{form.user}}</h4> -->
+                        <button title="Sair" ng-click="logout()" type="button" class="pull-right btn btn-primary btn-circle btn">
+                            <i class="glyphicon glyphicon-log-out pull-right"></i></button>
+                        <h4>Olá {{user}}</h4>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                        crie seus times pokemons abaixo
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 col-centered espaco-baixo">
+                            <a ng-click="adicionarTime()" class="btn icon-btn btn-success">
+                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success">
+                                    </span>
+                                    Time
+                                </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container" id="times">
+                <div ng-repeat="team in teams" align="center" class="col-xs-12 col-sm-8 col-md-8 col-lg-4 col-centered">
+                    <div class="row">
+                        <form class="login-dp">
+                            <div class="col-md-12 col-sm-12 col-lg-12 espacado">
+                                <h5>Preencha as informações sobre o time</h5>
+                                <br>
+                                <h4>{{team.name}}</h4>
+                                <br>
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail2">Nome do time</label>
+                                    <input ng-keyup="atualizarNomeTime(team)" ng-model="team.name" class="form-control" placeholder="Nome do time">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputPassword2">Nome do Pokemon</label>
+                                    <input type="text" class="form-control" ng-model="team.pokemonPartialName" ng-keyup="completePokemon(team)" class="form-control"
+                                        placeholder="Pesquise pokemons aqui">
+                                    <ul class="list-group" ng-model="team.hideThisPokemon" ng-hide="team.hideThisPokemon">
+                                        <a class="list-group-item" href="" ng-click="insertLinePokemon(team,pokemonData)" ng-repeat="pokemonData in team.filterPokemon">
+                                                    {{pokemonData.name}}
+                                                </a>
+                                    </ul>
+                                    <br>
+                                    <h4 ng-show="team.pokemons.length > 0">Pokemons </h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item team-background skills-fluid" ng-repeat="pokemon in team.pokemons">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h2 class="pokemon-name">
+                                                        {{pokemon.name}}
+                                                    </h2>
+                                                </div>
+                                                <div class="col-md-6 pull-right">
+                                                    <!-- <a id="del-{{pokemon.name}}" ng-click="excluirPokemon({{pokemon.name}})" class="btn icon-btn btn-warning pull-right">
+                                                                <span class="glyphicon btn-glyphicon glyphicon-remove img-circle text-warning">
+                                                                </span>
+                                                                Pokemon
+                                                            </a> -->
+                                                    <button title="Excluir pokemon" ng-click="excluirPokemon(team,pokemon.name)" type="button" class="pull-right btn btn-warning btn-circle btn"><i class="glyphicon glyphicon-remove"></i></button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <input class="form-control" ng-model="pokemon.skillPartialName" ng-keyup="completeSkill(pokemon)" class="form-control" placeholder="Pesquise skills aqui">
+                                                <ul class="list-group skills-fluid" ng-model="pokemon.hideThisSkill" ng-hide="pokemon.hideThisSkill">
+                                                    <a class="list-group-item" href="" ng-click="insertLineSkill(team,pokemon,skillData)" ng-repeat="skillData in pokemon.filterSkill">
+                                                               {{skillData.name}}
+                                                            </a>
+                                                </ul>
+                                                <br>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item skill-item-style skills-fluid" ng-repeat="skill in pokemon.skills">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h3>
+                                                                    {{skill.name}}
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6 pull-right">
+                                                                <!-- <a id="del-{{skill.name}}-{{pokemon.name}}" ng-click="excluirSkill({{skill.name}},{{pokemon.name}})" class="btn icon-btn btn-warning pull-right">
+                                                                                <span class="glyphicon btn-glyphicon glyphicon-remove img-circle text-warning">
+                                                                                </span>
+                                                                                Skill
+                                                                            </a> -->
+                                                                <button title="Excluir skill" ng-click="excluirSkill(team,pokemon,skill.name)" type="button" class="pull-right btn btn-warning btn-circle btn"><i class="glyphicon glyphicon-remove"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 espaco-baixo">
+                                    <a type="submit" class="btn icon-btn btn-success">
+                                            <span class="glyphicon btn-glyphicon glyphicon-floppy-disk img-circle text-success">
+                                            </span>
+                                            Salvar
+                                        </a>
+                                </div> -->
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-centered espaco-baixo">
+                                    <a ng-click="excluirTime(team)" class="btn icon-btn btn-danger"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Excluir</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/jquery-1.10.2.js"></script>
+    <script src="/scripts/modernizr-2.6.2.js"></script>
+    <script src="/scripts/bootstrap.js"></script>
+    <script src="/scripts/respond.js"></script>
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/angucomplete-alt.min.js"></script>
+    <script src="/scripts/paginas/home/home.js"></script>
+</body>
+
+</html>

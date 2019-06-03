@@ -1,0 +1,42 @@
+{
+    "name": "pokedeck",
+    "version": "1.0.0",
+    "description": "RESTful Node.js pokemon team creator system",
+    "main": "Index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GustavoMilitao/pokedeck.git"
+    },
+    "keywords": [
+        "RESTful",
+        "API",
+        "Tutorial"
+    ],
+    "author": "Gustavo Henrique",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/GustavoMilitao/pokedeck/issues"
+    },
+    "homepage": "https://github.com/GustavoMilitao/pokedeck#readme",
+    "devDependencies": {
+        "nodemon": "^1.11.0"
+    },
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.7",
+        "express": "^4.15.4",
+        "express-session": "^1.15.5",
+        "fs": "0.0.1-security",
+        "mongoose": "^4.11.8",
+        "openurl": "^1.1.1",
+        "opn": "^5.1.0",
+        "path": "^0.12.7",
+        "pokedex-promise-v2": "^3.0.3",
+        "sugar": "^2.0.4"
+    }
+}
