@@ -10,7 +10,14 @@
       background-position: center;
   }
 
+body{
+      background-image: url('img/background.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+}
+
 .menu{ float: left; padding-top: 50px; padding-bottom: 50px;}
+
 
 .dropdown{
   margin: 0 1em;

@@ -1,4 +1,4 @@
-﻿var app = angular.module('pokedeck', ['angucomplete-alt']);
+﻿var app = angular.module('votex', ['angucomplete-alt']);
 app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $compile) {
     var user;
 

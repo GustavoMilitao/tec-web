@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  productSchema = require('./entities/product'),
+  product = require('./entities/product'),
   bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
@@ -22,9 +22,11 @@ app.use(bodyParser.json());
 
 var routesProduct = require('./routes/productRoutes');      
 var routesHome = require('./routes/homeRoutes');      
+var routesProductView = require('./routes/productViewRoutes');
 
 routesProduct(app); 
 routesHome(app);
+routesProductView(app);
 
 var path = require('path');
 
