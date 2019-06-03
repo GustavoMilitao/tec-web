@@ -1,12 +1,14 @@
-﻿var app = angular.module('pokedeck', ['angucomplete-alt']);
+﻿var app = angular.module('pokedeck', []);
 app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $compile) {
     var user;
 
     $scope.allSkills = [];
     $scope.allPokemons = [];
-    $scope.user = "";
+    $scope.user = [];
     $scope.ready = false;
     $scope.teams = [];
+
+    getProducts();
 
     $scope.completePokemon = function (team) {
         if (team.pokemonPartialName && team.pokemonPartialName != "") {
@@ -61,7 +63,7 @@ app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $c
                 }
             });
     }
-    $scope.excluirSkill = function (team,pokemon, skillName) {
+    $scope.excluirSkill = function (team, pokemon, skillName) {
         var oldSkills = pokemon.skills.slice(0);
         pokemon.skills = removeFunction(pokemon.skills, 'name', skillName);
         $http({
@@ -70,7 +72,7 @@ app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $c
             headers: {
                 'Content-Type': "application/json"
             },
-            data : team
+            data: team
         })
             .then(function (success) {
                 if (!success.data.success) {
@@ -159,10 +161,24 @@ app.controller('homeCtrl', function ($scope, $http, $timeout, $templateCache, $c
             data: team
         });
     }
-    $scope.logout = function(){
+    $scope.logout = function () {
         $scope.ready = false;
-        setCookie('user',"",-1);
-        window.location.href="/";
+        setCookie('user', "", -1);
+        window.location.href = "/";
+    }
+    function getProducts() {
+        $http({
+            method: "GET",
+            url: '/products/',
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+            .then(function (success) {
+                // console.log(success.data);
+                $scope.user = success.data;
+                // $scope.ready = true;
+            });
     }
 
     // var cookie = getCookie('user');
@@ -194,23 +210,7 @@ function contemSkillNaListaDoPokemon(nome, pokemon) {
     return contem;
 }
 
-function getLoggedUser($http, $scope) {
-    var userId = getCookie("user");
-    $http({
-        method: "GET",
-        url: '/users/' + userId,
-        headers: {
-            'Content-Type': "application/json"
-        },
-        data: {}
-    })
-        .then(function (success) {
-            if (success.data.success) {
-                $scope.user = success.data.user.user;
-                // $scope.ready = true;
-            }
-        });
-}
+
 
 function getPokemonsList($http, $scope) {
     $http({
